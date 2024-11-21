@@ -199,4 +199,9 @@ Lucas França
 Desenvolvedor principal do projeto.
 GitHub: Lucas420-bot
 
+### altetação no codigo html
+1. colocar o meu nome para aparecer como logo 
+![imagem navbar](![alt text](<Captura de tela 2024-11-21 201016 (hj).png>))
+
+
 >>>>>>> 3c5e2a661bad3b37f24e473bbc4a678911ef3d05
