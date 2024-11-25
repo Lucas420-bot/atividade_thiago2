@@ -1,4 +1,4 @@
-Aqui está o `README.md` atualizado com a explicação detalhada sobre como o código funciona, conforme solicitado:
+# Atividade Thiago
 
 ```markdown
 # Exercício - Componentes do React - Parte 1
