@@ -1,207 +1,196 @@
-<<<<<<< HEAD
-# atividade_thiago2
+# Atividade Thiago
 
-=======
-# **Atividade Thiago 2**
+```markdown
+# Exercício - Componentes do React - Parte 1
 
-## **Descrição do Projeto**
-Este repositório foi criado para a atividade proposta pelo professor Thiago e tem como objetivo consolidar conhecimentos em **Git**, **GitHub** e no desenvolvimento de um aplicativo React básico. O projeto aborda práticas de versionamento de código, configuração inicial de projetos React e gerenciamento de repositórios remotos.
+## Objetivos e Resultados
 
----
+Neste exercício, você irá adicionar o primeiro componente ao seu aplicativo React e atualizar sua visualização usando JSX. Ao final deste exercício, você será capaz de:
 
-## **Estrutura do Repositório**
-A organização do repositório é a seguinte:
+- Adicionar componentes ao seu aplicativo React.
+- Usar JSX para definir as exibições do seu componente.
 
-atividade_thiago2/ │ ├── README.md # Documentação principal do projeto. ├── .gitignore # Arquivo para ignorar certos arquivos no versionamento. ├── uc13_exerc_roteiro_aula05.md # Roteiro com as instruções do exercício React. └── <outros arquivos principais> # Ex.: index.js, App.js, etc.
+## Adição de um Componente de Menu
 
-markdown
-Copiar código
+### Passos:
 
-### **Descrição dos arquivos principais**
-- `README.md`: Este arquivo contém a documentação detalhada do repositório.
-- `.gitignore`: Define arquivos ou diretórios que devem ser ignorados pelo Git.
-- `uc13_exerc_roteiro_aula05.md`: Roteiro detalhado para a criação de um aplicativo React básico.
+1. **Baixar e descompactar o arquivo de imagens:**
+   - Faça o download do arquivo `images.zip` fornecido e descompacte-o.
+   - Crie uma pasta chamada `assets` dentro da pasta `public` do seu projeto React.
+   - Mova a pasta de imagens, que contém alguns arquivos PNG, para a pasta `public/assets` do projeto. Esses arquivos de imagem serão úteis nos exercícios subsequentes.
 
----
+2. **Criação do componente de menu:**
+   - Crie uma nova pasta chamada `components` dentro da pasta `src` do projeto.
+   - Dentro da pasta `components`, crie um arquivo chamado `MenuComponent.js`.
+   - Adicione o seguinte código ao `MenuComponent.js`:
 
-## **Histórico de Alterações**
+   ```js
+   import React, { useState } from 'react';
+   import { Media } from 'reactstrap';
 
-### **1. Inicialização do Repositório**
-O projeto foi iniciado localmente com os seguintes comandos:
+   const Menu = () => {
+     const [dishes] = useState([
+       {
+         id: 0,
+         name: 'Uthappizza',
+         image: 'assets/images/uthappizza.png',
+         category: 'mains',
+         label: 'Hot',
+         price: '4.99',
+         description: 'A unique combination of Indian Uthappam (pancake) and Italian pizza, topped with Cerignola olives, ripe vine cherry tomatoes, Vidalia onion, Guntur chillies and Buffalo Paneer.'
+       },
+       {
+         id: 1,
+         name: 'Zucchipakoda',
+         image: 'assets/images/zucchipakoda.png',
+         category: 'appetizer',
+         label: '',
+         price: '1.99',
+         description: 'Deep fried Zucchini coated with mildly spiced Chickpea flour batter accompanied with a sweet-tangy tamarind sauce.'
+       },
+       {
+         id: 2,
+         name: 'Vadonut',
+         image: 'assets/images/vadonut.png',
+         category: 'appetizer',
+         label: 'New',
+         price: '1.99',
+         description: 'A quintessential ConFusion experience, is it a vada or is it a donut?'
+       },
+       {
+         id: 3,
+         name: 'ElaiCheese Cake',
+         image: 'assets/images/elaicheesecake.png',
+         category: 'dessert',
+         label: '',
+         price: '2.99',
+         description: 'A delectable, semi-sweet New York Style Cheese Cake, with Graham cracker crust and spiced with Indian cardamoms.'
+       }
+     ]);
 
-1. Criação do repositório:
+     const menu = dishes.map((dish) => {
+       return (
+         <div key={dish.id} className="col-12 mt-5">
+           <Media tag="li">
+             <Media left middle>
+               <Media object src={dish.image} alt={dish.name} />
+             </Media>
+             <Media body className="ml-5">
+               <Media heading>{dish.name}</Media>
+               <p>{dish.description}</p>
+             </Media>
+           </Media>
+         </div>
+       );
+     });
+
+     return (
+       <div className="container">
+         <div className="row">
+           <Media list>
+             {menu}
+           </Media>
+         </div>
+       </div>
+     );
+   };
+
+   export default Menu;
+   ```
+
+3. **Atualizar o arquivo `App.js`:**
+   - Abra o arquivo `App.js` e adicione a importação do componente `MenuComponent`:
+   
+   ```js
+   import Menu from './components/MenuComponent';
+   ```
+
+   - Em seguida, adicione o componente `<Menu />` no JSX da função `App`:
+
+   ```js
+   <Menu />
+   ```
+
+4. **Atualizar o arquivo `App.css`:**
+   - Abra o arquivo `App.css` e **exclua todo o seu conteúdo**. Isso é feito para remover qualquer estilo indesejado que possa interferir no layout do seu componente.
+
+5. **Commit no Git:**
+   - Salve todas as alterações feitas.
+   - Faça um commit no Git com a seguinte mensagem:
+
    ```bash
-   git init
-Adição dos primeiros arquivos ao controle de versão:
-bash
-Copiar código
-git add .
-Realização do primeiro commit:
-bash
-Copiar código
-git commit -m "Initial commit"
-2. Configuração do Repositório Remoto
-Após a inicialização local, o repositório foi conectado ao GitHub com os comandos:
+   git commit -m "Components Part 1"
+   ```
 
-Adição do repositório remoto:
-bash
-Copiar código
-git remote add origin https://github.com/Lucas420-bot/atividade_thiago2.git
-Envio inicial dos arquivos:
-bash
-Copiar código
-git push -u origin main
-3. Resolução de Conflitos
-Ao tentar fazer o push, foi exibido o erro de rejeição devido à existência de alterações no repositório remoto. Para resolver, foi realizado o seguinte:
+## Como Funciona o Código
 
-Sincronização com o repositório remoto:
-bash
-Copiar código
-git pull origin main --rebase
-Resolução manual de conflitos:
-Arquivos conflitantes foram corrigidos e marcados como resolvidos:
-bash
-Copiar código
-git add <arquivo_conflitante>
-Continuação do rebase:
-bash
-Copiar código
-git rebase --continue
-Após resolver os conflitos, foi feito o push final:
-bash
-Copiar código
-git push origin main
-Exercício: Primeiros Passos com React
-Objetivos e Resultados
-Este exercício tem como objetivo instalar e configurar um aplicativo React básico usando a ferramenta create-react-app. Após a realização, você será capaz de:
+### 1. **Estrutura do Componente `Menu`**
 
-Instalar o create-react-app.
-Criar um aplicativo React básico.
-Executar o aplicativo no navegador.
-Inicializar e sincronizar o projeto com um repositório Git.
-Passos Realizados
-1. Instalação do Yarn ou npm
-O Yarn foi recomendado por ser mais rápido e adequado para aplicativos React.
-Instalação do Yarn:
-bash
-Copiar código
-npm install -g yarn
-Caso prefira, você pode continuar usando o npm.
-2. Instalando o create-react-app
-Para instalar a CLI create-react-app, utilizamos:
+- **Importações**: No início do arquivo `MenuComponent.js`, importamos o React e o hook `useState` de `react` para gerenciar o estado local do componente. Também importamos o componente `Media` do `reactstrap`, que é um conjunto de componentes de UI baseados no Bootstrap, para ajudar a estruturar a exibição do menu.
+  
+- **useState e Dados do Menu**: Dentro do componente, usamos o hook `useState` para armazenar o estado do menu. O estado é um array de objetos, onde cada objeto representa um prato do menu com suas propriedades como `id`, `name`, `image`, `category`, `price`, `description`, etc.
 
-bash
-Copiar código
-npm install -g create-react-app
-ou
+   ```js
+   const [dishes] = useState([...]);
+   ```
 
-bash
-Copiar código
-yarn global add create-react-app
-3. Gerando e Servindo um Projeto React
-Criação do projeto:
-bash
-Copiar código
-npx create-react-app confusion
-ou
-bash
-Copiar código
-yarn create react-app confusion
-Navegando para a pasta do projeto e iniciando o servidor:
-bash
-Copiar código
-cd confusion
-npm start
-ou
-bash
-Copiar código
-yarn start
-O navegador padrão abriu o endereço http://localhost:3000, exibindo o aplicativo React inicial.
-4. Inicialização do Repositório Git
-O projeto foi configurado para Git com os comandos:
+   Cada objeto no array representa um prato, com dados como nome, imagem e descrição.
 
-bash
-Copiar código
-git init
-git add .
-git commit -m "Initial Setup"
-O repositório foi então sincronizado com o GitHub.
+- **Renderizando os Pratos**: O `menu` é criado com a função `map()`, que itera sobre cada item do array `dishes`. Para cada prato, ele cria um novo bloco de HTML que usa o componente `Media` para exibir a imagem do prato, seu nome e sua descrição.
 
-Como Clonar e Usar o Projeto
-Siga os passos abaixo para clonar este repositório e configurá-lo em sua máquina:
+   ```js
+   const menu = dishes.map((dish) => {
+     return (
+       <div key={dish.id} className="col-12 mt-5">
+         <Media tag="li">
+           <Media left middle>
+             <Media object src={dish.image} alt={dish.name} />
+           </Media>
+           <Media body className="ml-5">
+             <Media heading>{dish.name}</Media>
+             <p>{dish.description}</p>
+           </Media>
+         </Media>
+       </div>
+     );
+   });
+   ```
 
-Clone o repositório para sua máquina local:
-bash
-Copiar código
-git clone https://github.com/Lucas420-bot/atividade_thiago2.git
-Navegue até o diretório do projeto:
-bash
-Copiar código
-cd atividade_thiago2
-Execute os arquivos ou configure o ambiente de acordo com as instruções fornecidas.
-Ferramentas Utilizadas
-Git: Para controle de versão.
-GitHub: Para hospedagem e colaboração no código.
-React: Framework utilizado para o desenvolvimento do aplicativo.
-npm/Yarn: Gerenciadores de pacotes para instalação e execução.
-Contribuição
-Se você deseja contribuir com este projeto, siga os passos abaixo:
+- **Estrutura Final**: O JSX que é retornado pelo componente inclui um contêiner `div` com a classe `container`, dentro do qual há uma `row` que envolve todos os pratos listados. O componente `Media` é usado para criar a estrutura visual.
 
-Faça um fork deste repositório clicando no botão "Fork" no GitHub.
-Clone o seu fork para a sua máquina local:
-bash
-Copiar código
-git clone https://github.com/<seu-usuario>/atividade_thiago2.git
-Crie um novo branch para suas alterações:
-bash
-Copiar código
-git checkout -b minha-feature
-Faça as alterações necessárias e commit:
-bash
-Copiar código
-git add .
-git commit -m "Descrição das alterações"
-Envie suas alterações para o seu fork:
-bash
-Copiar código
-git push origin minha-feature
-Abra um Pull Request no repositório original.
-Possíveis Problemas e Soluções
-Erro: rejected -> main (fetch first)
-Causa: O repositório remoto contém alterações que não estão na sua cópia local.
-Solução:
+   ```js
+   return (
+     <div className="container">
+       <div className="row">
+         <Media list>
+           {menu}
+         </Media>
+       </div>
+     </div>
+   );
+   ```
 
-Sincronize sua branch local com a remota:
-bash
-Copiar código
-git pull origin main --rebase
-Resolva conflitos, se houverem, e envie novamente:
-bash
-Copiar código
-git push origin main
-Erro: src refspec refs/heads/master does not match any
-Causa: O nome da branch está incorreto (ex.: tentando usar master em vez de main).
-Solução:
+### 2. **Atualizando o Componente `App`**
 
-###Verifique o nome da branch atual:
-bash
-Copiar código
-git branch
-Use o nome correto ao realizar o push:
-bash
-Copiar código
-git push origin main
-Licença
-Este projeto está licenciado sob a Licença MIT. Consulte o arquivo LICENSE para mais informações.
+No arquivo `App.js`, o componente `MenuComponent` é importado e adicionado ao JSX da função `App` com a tag `<Menu />`. Isso permite que o componente de menu seja exibido dentro do layout principal do aplicativo.
 
-###Autores
-Lucas França
-Desenvolvedor principal do projeto.
-GitHub: Lucas420-bot
+### 3. **Alterações no `App.css`**
 
-### altetação no codigo html
-1. colocar o meu nome para aparecer como logo 
-![imagem navbar](![alt text](<Captura de tela 2024-11-21 201016 (hj).png>))
+No arquivo `App.css`, você é instruído a excluir todo o conteúdo para garantir que estilos não desejados não afetem o layout do componente. Isso pode ser útil quando estamos começando a trabalhar com componentes de UI externos, como o `reactstrap`, que pode ter seus próprios estilos.
 
+## Conclusão
 
->>>>>>> 3c5e2a661bad3b37f24e473bbc4a678911ef3d05
+Neste exercício, adicionamos um novo componente ao nosso aplicativo React, fornecemos dados para o componente e, em seguida, atualizamos o aplicativo para exibir as informações na página da web. Esse exercício ajuda a consolidar os conceitos sobre como criar e usar componentes em React e como trabalhar com JSX para renderizar conteúdo dinâmico na interface.
+
+Ao final deste exercício, você terá aprendido a:
+
+- Criar componentes funcionais em React.
+- Usar o hook `useState` para gerenciar dados dentro de um componente.
+- Renderizar conteúdo dinâmico usando o `map()` e JSX.
+- Integrar dados com componentes de UI como o `reactstrap`.
+
+```
+
+### Explicação
+
+A estrutura do código e a lógica explicada no `README.md` ajudam a entender como cada parte do componente React funciona. A explicação abrange desde a criação de um estado para armazenar os dados do menu, até a forma como a exibição é organizada usando o `Media` do `reactstrap` para tornar a interface mais limpa e interativa. Isso é importante para quem está aprendendo a usar o React e seus hooks para construir componentes dinâmicos.
